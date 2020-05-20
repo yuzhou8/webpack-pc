@@ -31,6 +31,7 @@ module.exports = {
         },
     },
     entry:{
+				polyfill:'@babel/polyfill',
         main:'./src/index.js'
     },
     output:{
@@ -47,7 +48,7 @@ module.exports = {
             template:'./src/index.html',  //来源文件的路径
             injekt:true,  //css和js文件插在html文件哪个位置，分别有true|'body'|'head'|false,true和body是插在html的body内的最底
             // favicon:'./logo.jpg', //网站图标的路径
-            chunks:['main'],  //仅插入指定的js文件到html中
+            chunks:['polyfill','main'],  //仅插入指定的js文件到html中
             // excludeChunks:["bb"],  //插入除了bb.js的其他js到html中
             minify:{    //压缩html文件
                 removeComments:true,//删除html文件中的注释
@@ -78,7 +79,10 @@ module.exports = {
             },
             {
                 test: /\.js$/,
-                exclude: /node_modules/,
+								include: filePath=>{
+									return /src|yu-/.test(filePath)
+								},
+                // exclude: /node_modules/,
                 loader: "babel-loader"
             },
             {

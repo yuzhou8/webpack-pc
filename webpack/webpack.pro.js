@@ -21,11 +21,11 @@ module.exports = {
             name:'manifest'  //提取 记录模块文件索引的文件
         },
         splitChunks: {
-            chunks: 'initial',
+            chunks: 'all',
             /*'all'|'async'|'initial',
-            all拆分异步和同步文件里引入的模块，
-            async拆分异步文件里引入的模块，
-            initial拆分同步文件里引入的模块*/
+            all 分离出所有块到一个文件，
+            async 分离出异步块到一个文件，
+            initial 将同步块和异步块分别分离到各自的文件*/
             minSize: 30000,
             minChunks: 1,  //当模块被引用1次，就被提取出来
             maxAsyncRequests: 5,   //拆分异步文件里的模块，拆分成的模块文件数量不能超过5个
@@ -35,7 +35,7 @@ module.exports = {
             cacheGroups: {
                 vendors: {  //将node_modules引入的所有第三方模块，提取到vendors.js文件
                     name:"vendors",
-                    test: /[\\/]node_modules[\\/]/,
+                    test: /node_modules/,
                     priority: -10   //权重值
                 },
                 common: {  //重用的模块，提取到common.js文件
@@ -48,6 +48,7 @@ module.exports = {
             }
         }
     },
+		
     entry:{
         main:'./src/index.js'
     },

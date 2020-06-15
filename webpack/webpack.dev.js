@@ -21,12 +21,18 @@ module.exports = {
         hot:true,     //热更新
         proxy:{
             "/api1":{
-                target:"localhost:8822",  //当访问/api1时，会跳到localhost:8822/api1
+                target:"http://localhost:80",  //当访问/api1时，会跳到http://localhost:80
                 secure: false,  //可以访问https类型
+            		pathRewrite: {
+            			'^/api1': ''
+            		}
             },
             "/api2":{
-                target:"localhost:8822",  //当访问/api1时，会跳到localhost:8822/api2
+                target:"http://localhost:88",  //当访问/api2时，会跳到http://localhost:88
                 secure: false,  //可以访问https类型
+            		pathRewrite: {
+            			'^/api2': ''
+            		}
             },
         },
     },

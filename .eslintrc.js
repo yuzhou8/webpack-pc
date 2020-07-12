@@ -23,8 +23,10 @@ module.exports = {
   rules: {
     // allow async-await
 		'no-tabs':'off',
+		'no-mixed-spaces-and-tabs':'off',
 		'no-prototype-builtins':'off',
     'generator-star-spacing': 'off',
+		'vue/no-use-v-if-with-v-for':'off',
     // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off'
   }
